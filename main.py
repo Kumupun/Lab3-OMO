@@ -28,23 +28,23 @@ def main():
         return 0
     
     elif c == '2':
-        print("Quadratic Method Selected.")
-        print("Enter initial guess :")
-        x0 = np.array(list(map(float, input().split())))
-        result = quad.quad(x0)
+        print("Jacobi Method Selected.")
+        max_iter = int(input("Enter  number of iterations: "))
+        result = jacobi.jacobi(max_iter)
         if result is not None:
-            print(f"x = {result}")
+            for i in range(len(result)):
+                print(tc.colored(f"Eigenvalue {i+1} = {result[i]}", "green"))
         else:
-            print("No root found.")
+            print(tc.colored("No eigenvector found.", "red"))
         return 0
     
     elif c == '3':
-        print("Seidel's Method Selected.")
+        print("Modified Newton Method Selected.")
         print("Enter initial guess :")
         x0 = np.array(list(map(float, input().split())))
         epsilon = float(input("Enter epsilon: "))
         max_iter = int(input("Enter maximum number of iterations: "))
-        result = seidel.seidel(x0, epsilon, max_iter)
+        result = mod_newt.mod_newton(x0, epsilon, max_iter)
         if result is not None:
             for i, val in enumerate(result):
                 print(f"x{i} = {val}")

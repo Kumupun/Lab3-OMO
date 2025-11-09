@@ -1,0 +1,32 @@
+import numpy as np
+import termcolor as tc
+
+def jacobi(max_iter):
+    A = np.array([
+     [4, 0, 0, 1],
+     [0, 3, 1, 2],
+     [0, 1, 2, 0],
+     [1, 2, 0, 3]
+     ], dtype=float)
+    B= A.copy()
+    
+    for i in range(max_iter):
+       bij = 0
+       p,q = 0,0
+       for n in range(len(B)):
+           for m in range(n+1, len(B)):
+               if  bij < abs(B[n][m]):
+                   bij = abs(B[n][m])
+                   p,q = n,m
+       if bij > 0:
+            theta = 0.5 * np.arctan2(2 * B[p][q], B[p][p] - B[q][q])
+            c = np.cos(theta)
+            s = np.sin(theta)
+            J = np.eye(len(B))
+            J[p][p] = c
+            J[q][q] = c
+            J[p][q] = -s
+            J[q][p] = s
+            B = J.T @ B @ J
+            print(f"Iteration {i+1}\nMatrix B = \n{B}")
+    return np.diag(B)
