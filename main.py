@@ -32,8 +32,7 @@ def main():
         max_iter = int(input("Enter  number of iterations: "))
         result = jacobi.jacobi(max_iter)
         if result is not None:
-            for i in range(len(result)):
-                print(tc.colored(f"Eigenvalue {i+1} = {result[i]}", "green"))
+            print(tc.colored(f"Eigenvalues = {result}", "green"))
         else:
             print(tc.colored("No eigenvector found.", "red"))
         return 0
@@ -44,16 +43,15 @@ def main():
         x0 = np.array(list(map(float, input().split())))
         epsilon = float(input("Enter epsilon: "))
         max_iter = int(input("Enter maximum number of iterations: "))
-        result = mod_newt.mod_newton(x0, epsilon, max_iter)
+        result = mod_newt.mod_newt(x0, epsilon, max_iter)
         if result is not None:
-            for i, val in enumerate(result):
-                print(f"x{i} = {val}")
+            print(tc.colored(f"x = {result}", "green"))
         else:
-            print("No root found.")
+            print(tc.colored("No root found.", "red"))
         return 0
     
     elif c == '4':
-        print("Exiting the program.")
+        print(tc.colored("Exiting the program.", "red"))
         return 0
     return 0
 main()
