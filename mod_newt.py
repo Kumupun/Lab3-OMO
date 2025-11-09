@@ -13,6 +13,7 @@ def mod_newt(x0, epsilon, max_iter):
     ], dtype=float)
     
     A0_ = np.linalg.inv(Ak(x0[0], x0[1]))
+    print(f'Обернена матриця обчислена в початковій точці A0_ = \n{A0_}\n')
     
     xn = x0.copy().astype(float)
     for n in range(max_iter):
