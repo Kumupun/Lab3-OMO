@@ -9,6 +9,7 @@ def jacobi(max_iter):
      [1, 2, 0, 3]
      ], dtype=float)
     B= A.copy()
+    print(tc.colored(f"Initial Matrix B = \n{B}", "cyan"))
     
     for i in range(max_iter):
        bij = 0
@@ -20,6 +21,7 @@ def jacobi(max_iter):
                    p,q = n,m
        if bij > 0:
             theta = 0.5 * np.arctan2(2 * B[p][q], B[p][p] - B[q][q])
+            print(f"Iteration {i+1}\nAngle theta = {np.radians(theta)}")
             c = np.cos(theta)
             s = np.sin(theta)
             J = np.eye(len(B))
@@ -27,6 +29,7 @@ def jacobi(max_iter):
             J[q][q] = c
             J[p][q] = -s
             J[q][p] = s
+            print(f"Jacobi Matrix J = \n{J}")
             B = J.T @ B @ J
-            print(f"Iteration {i+1}\nMatrix B = \n{B}")
+            print(f"New matrix B = \n{B}")
     return np.diag(B)
