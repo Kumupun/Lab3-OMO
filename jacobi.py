@@ -21,7 +21,7 @@ def jacobi(max_iter):
                    p,q = n,m
        if bij > 0:
             theta = 0.5 * np.arctan2(2 * B[p][q], B[p][p] - B[q][q])
-            print(f"Iteration {i+1}\nAngle theta = {np.radians(theta)}")
+            print(f"Iteration {i+1}\nAngle theta = {np.degrees(theta)}")
             c = np.cos(theta)
             s = np.sin(theta)
             J = np.eye(len(B))
